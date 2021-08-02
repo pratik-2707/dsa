@@ -1,0 +1,78 @@
+//merge sort
+#include <stdio.h>
+void merge(int a[],int leftarray[],int rightarray[],int r,int ls,int rs) ; 
+
+void mergesort(int a[],int l,int r) {
+    int i , ls , rs ,mid ,j ;
+    mid = (l+r)/2 ;
+    if(r<2) {
+        return ;
+    }
+    else {
+        ls = mid+1 ;
+        rs = r-mid +1;
+        int leftarray[ls] , rightarray[rs] ;
+        j =1 ;
+        for(i=1;i<=mid;i++) {
+            leftarray[j] = a[i] ;
+            printf("%d ",leftarray[j]) ;
+            j++ ;
+        }
+        j = 1 ;
+        printf("r ") ;
+        for(i=mid+1;i<=r;i++) {
+            rightarray[j] = a[i] ;
+            printf("%d ",rightarray[j]) ;
+            j++ ;
+        }
+        printf("\n") ;
+        mergesort(leftarray,1,mid) ;
+        mergesort(rightarray,1,r-mid) ;
+        merge(a,leftarray,rightarray,r,ls,rs) ; 
+    }
+}
+
+void merge(int a[],int leftarray[],int rightarray[],int r,int ls,int rs) {
+    int i =1, j =1 , left , right , k ;
+    for(k=1;k<=r;k++) {
+        if(left==1) {
+            a[k] = leftarray[i] ;
+            i++ ;
+        }
+        else if(right ==1 ) {
+            a[k] = rightarray[j] ;
+            j++ ;
+        }
+        else {
+            if(leftarray[i]<=rightarray[j]) {
+                a[k] = leftarray[i] ;
+                if(i==ls-1) {
+                    right = 1;
+                }
+                i++ ;
+            }
+            else {
+                a[k] = rightarray[j] ;
+                if(j==rs-1) {
+                    left = 1 ;
+                }
+                j++ ;
+            }
+        }
+    }
+}
+
+int main () {
+    int n = 5;
+    int  i  , j=n ;
+    int a[6] = {1 , 8 ,6 , 9 ,56 , 12} ;
+    for(i=1;i<=n;i++) {
+        printf("%d ",a[i]) ;
+        j-- ;
+    }
+    printf("\n") ;
+    mergesort(a,1,n);
+    for(i=1;i<=n;i++) {
+        printf("%d ",a[i]) ;
+    }
+} 
