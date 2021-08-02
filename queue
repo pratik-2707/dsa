@@ -1,0 +1,63 @@
+#include <stdio.h>
+int t  , i , front = 0 , rear = 0 , max = 5 ;
+int a[5] ;
+void peek() ;
+void enque() ;
+void deque() ;
+
+void commandchoice() {
+    printf("\nenter the choice 1. enque 2. deque 3. peek\n") ;
+    scanf("%d",&i) ;
+    switch (i)  {
+        case 1 :
+        enque() ;
+        break ;
+
+        case 2 :
+        deque() ;
+        break ;
+
+        case 3 :
+        peek() ;
+        break ;
+    }
+
+}
+
+void enque() {
+    if(rear==max) {
+        printf("queue is full\n") ;
+    } 
+    else {
+        printf("enter the data element\n") ;
+        scanf("%d",&t) ;
+        a[rear] = t ;
+        rear++ ;
+    }
+    commandchoice() ;
+}
+
+void deque() {
+    if(front==rear) {
+        printf("queue is empty\n") ;
+    }
+    else {
+        for(i=0;i<=rear-1;i++) {
+            a[i] = a[i+1] ;
+        }
+        rear = rear-1 ;
+    }
+    commandchoice() ;
+}
+
+void peek() {
+    for(i=front;i<=rear-1;i++) {
+        printf("%d ",a[i]) ;
+    }
+    commandchoice() ;
+
+}
+
+int main () {
+    commandchoice() ;
+}
