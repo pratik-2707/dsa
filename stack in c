@@ -1,0 +1,64 @@
+#include <stdio.h>
+void push() ;
+void pull() ;
+int isfull() ;
+void commandchoice() ;
+
+
+int t ,stack[5],sp=0 , i;
+void commandchoice() {
+	printf("enter 1 for push and 2 for pull and 3 for peek\n") ;
+	scanf("%d",&t) ;
+	if(t==1) {
+		push() ;
+	}
+	else if(t==2){
+		pull() ;
+	}
+	else if(t==3) {
+		if(sp!=0) {
+			for(i=sp-1;i>=0;i--) {
+				printf("|%d|\n",stack[i]) ;
+			}
+		}
+		else {
+			printf("stack is empty\n") ;
+		}	
+		commandchoice() ;
+	} 
+}
+int isfull() {
+	if(sp==5) {
+		return 1;
+	}
+	else {
+		return 0 ;
+	}
+}
+void push() {
+	if(isfull())  {
+		printf("stack is full\n stack overflow\n") ;
+	}
+	else {
+		printf("enter the data element\n") ;
+		scanf("%d",&t) ;
+		stack[sp] = t ;
+		sp++ ;
+	}
+	commandchoice() ;
+}
+
+void pull() {
+	if(sp==0) {
+		printf("stack underflow\n") ;
+	}
+	else {
+		sp-- ;
+	}
+	commandchoice() ;
+}
+int main () {
+	
+	commandchoice() ;
+	
+}
