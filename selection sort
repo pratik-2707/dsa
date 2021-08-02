@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void print_array(int a[],int n) {
+    int i ;
+    for(i=0;i<=n-1;i++){
+        printf("%d ",a[i]) ;
+    }
+}
+
+
+void selection_sort(int p[], int n) {
+    int i , j ,min , ind , temp;
+    for(i=0;i<=n-1;i++) {
+        min= 99999999;
+        for(j=i;j<=n-1;j++) {
+            if(p[j]<min) {
+                ind = j ;
+                min = p[j] ;
+            }
+        }
+        temp = p[ind] ;
+        p[ind] = p[i] ;
+        p[i] = temp ;
+    }
+}
+
+int main () {
+    double start = (clock()) / CLOCKS_PER_SEC;
+    int n ;
+    int p[] = {3, 15 , 7 , 8 , 9 , 45 , 23 , 6} ;
+    n = sizeof(p)/sizeof(int) ;
+    printf("\nnow soting using selection sort\narray befoe sorting\n\n") ;
+    print_array(p,n) ;
+    selection_sort(p,n) ;
+    printf("\narray after sorting\n") ;
+    print_array(p,n) ;
+
+    double finish = (clock()) / CLOCKS_PER_SEC;
+    double elapsed = finish - start;
+    printf("\n\n time elapsed : %Lf\n",elapsed) ;
+}
