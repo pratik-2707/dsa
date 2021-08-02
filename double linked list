@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int t  , i ;
+typedef struct node  {
+	int data ;
+	struct node *next ;
+	struct node *prev ;
+}node1;
+
+node1 *createlist() {
+	node1 *head , *p , *temp;
+	printf("enter the number of elements you ant in a linked list\n") ;
+	scanf("%d",&t) ;
+	for(i=0;i<=t-1;i++) {
+		if(i==0) {
+			head = (node1 *)malloc(sizeof(node1)) ;
+			p =  head ;
+		}
+		else {
+			p->next = (node1 *)malloc(sizeof(node1)) ;
+			p = p->next ;
+			p->prev = temp ;
+		}
+		scanf("%d",&p->data) ;
+		temp = p ;
+	}
+	printf("%d ",p->data) ;
+//	display(head) ;
+
+	for(i=0;i<=t-2;i++) {
+		printf("%d ",p->prev->data) ;
+		p=p->prev ;
+	}
+	return(head) ;
+}
+
+void display(node1 *p) {
+	printf("here are all the data elements\n") ;
+	for(i=0;i<=t-1;i++) {
+		printf("%d ",p->data) ;
+		p = p->next ;
+	}
+	free(p) ;
+}
+
+node1 *reverse(node1 *head) {
+	node1 *p,*q , *temp;
+	printf("here we are reversing the liked list\n") ;
+	for(i=0;i<=t-2;i++) {
+		if(i==0) {
+			q = head->next ;
+            head->next = head->prev ;
+			head->prev = q ;
+			p = q ; 
+		}
+		else {
+			temp = p->next ;
+			p->next = p->prev ;
+			p->prev = temp ;
+			p = temp ;
+		}
+	}
+	p->next = p->prev ;
+	p->prev = NULL ;
+	head = p ;
+	return(head) ;
+}
+
+int main () {
+	node1 *head ;
+	head = createlist() ;
+	display(head) ;
+	head = reverse(head) ;
+	display(head) ;
+	free(head) ;
+}
