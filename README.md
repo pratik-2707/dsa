@@ -1,1 +1,1 @@
-this repository contains mot of the DSA course programmes
+this repository contains most of the DSA course programmes
