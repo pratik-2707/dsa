@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std ;
+
+const int p = 1e7+5 ;
+long long int a[p] ;
+
+int main () {
+    long long int n , m ,i;
+    long long int max , sum=0;
+    cin>>n>>m ;
+    for(i=0;i<=p;i++) {
+        a[i] = 0 ;
+    }
+    while(m--) {
+        long long int l  , r ,element;
+        cin>>l>>r>>element;
+        a[l] = a[l] + element;
+        a[r+1] = a[r+1] - element ;
+    }
+    for(i=1;i<=n;i++) {
+        sum = sum + a[i] ;
+        a[i] =  sum ;
+    }
+    max = a[1] ;
+    for(i=2;i<=n;i++) {
+        if(a[i]>max) {
+            max = a[i] ;
+        }
+    }
+    cout<<max;
+}
