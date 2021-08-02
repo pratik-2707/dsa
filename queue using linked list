@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int t , i ;
+
+typedef struct node {
+	int data ;
+	struct linkedlist *next ;
+}  node1;
+
+struct node *front ;
+struct node *rear  ;
+
+node1 *createlist() {
+	node1  *p ,*head;
+	printf("enter the number of elements you ant in a linked list \n") ;
+	scanf("%d",&t) ;
+	for(i=0;i<=t-1;i++) {
+		if(i==0) {
+			head = (node1 *)malloc(sizeof(node1)) ;
+			p =  head ;
+		}
+		else {
+			p->next = (node1 *)malloc(sizeof(node1)) ;
+			p = p->next ;
+		}
+		scanf("%d",&p->data) ;
+	}
+	p->next = NULL ;
+	return(head) ;
+}
+
+node1 display(node1 *p) {
+	for(i=0;i<=t-1;i++) {
+		printf("%d ",p->data) ;
+		p = p->next ;
+	}
+}
+
+node1 *commandchoice(node1 *head,node1 *front , node1 *rear) {
+ 
+    printf("enter the choice 1.enqueue 2. dequeue 3.peek \n") ;
+    scanf("%d",&t) ;
+    switch(t) {
+        case 1 :
+        enqueue(head,front,rear) ;
+        break ;
+
+        case 2 :
+        dequeue(head,front,rear) ;
+        break ;
+
+        case 3 :
+        peek(head,front,rear) ;
+        break ;
+
+    }
+} 
+
+node1 enqueue(node1 *head,node1 *front,node1 *rear) {
+    if(rear->next==100) {
+		printf("queue is full\n") ;
+	}
+	else {
+		printf("enter the data element\n") ;
+		scanf("%d",&t) ;
+		rear->data = t ;
+		rear->next = (node1 *)malloc(sizeof(node1)) ;
+		rear = rear->next ;
+	}
+	commandchoice(head,rear) ;
+	
+}
+
+node1 dequeue(node1 *head,node1 *front,node1 *rear) {
+	if(front->next==NULL) {
+		printf("") ;
+	}
+}
+
+int main () {
+	
+	node1 *head ;
+	head = createlist() ;
+	printf("here are all the data elements of linked list 1\n") ;
+	display(head) ;
+	printf("\n") ;
+    commandchoice(head,NULL,NULL) ;
+}
